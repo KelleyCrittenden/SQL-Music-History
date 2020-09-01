@@ -73,16 +73,17 @@ GROUP BY Album.Title;
 
 /*12. Write a SELECT statement to display how many songs exis for each artist.
 You'll need to use the COUNT() function and the GROUP BY keyword sequence.*/
-SELECT COUNT(Artist.ArtistName), Artist.ArtistName 
+SELECT COUNT(Artist.ArtistName), Genre 
 FROM Song
-LEFT JOIN Artist ON Song.ArtistId = Artist.Id
+LEFT JOIN Genre ON Song.ArtistId = Artist.Id
 GROUP BY ArtistName;
 
 /*13. Write a SELECT statement to display how many songs exist for each genre.
 You'll need to use the COUNT() function and the GROUP BY keywords sequence.*/
-SELECT COUNT (Id), GenreId
+SELECT COUNT(GenreId), Genre.Label 
 FROM Song
-GROUP BY GenreId;
+LEFT JOIN Genre ON Song.GenreId = Genre.Id
+GROUP BY Genre.Label;
 
 /*14. Write a SELECT query that lists the Artists that have put out records on more than one record label.
 Hint: When using GROUP BY instead of using a WHERE clause, use the HAVING keyword*/
