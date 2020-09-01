@@ -1,4 +1,8 @@
 # SQL-Music-History
+
+## ERD
+https://dbdiagram.io/d/5f4d245688d052352cb57464
+
 Instructions
 Using the SQL Server Object Explorer in Visual Studio, examine the tables, columns, and foreign keys of the database.
 Using the dbdiagram.io site, create an ERD for the database.
