@@ -7,25 +7,25 @@ FROM Artist
 ORDER BY ArtistName Asc;
 
 /*3.  lists all the songs and the artist name */
-SELECT s.Title,
-		a.ArtistName
-		FROM Song s
-LEFT JOIN Artist a on s.ArtistId = a.id
+SELECT Song.Title, Artist.ArtistName
+FROM Song
+LEFT JOIN Artist ON Song.ArtistId = Artist.id
 
 /*4. All the Artist that have a Pop Album*/
 
-SELECT art.ArtistName
-FROM Artist art inner join
-Album alb on art.id = alb.ArtistId
-WHERE alb.GenreId = (SELECT id
+SELECT Artist.ArtistName
+FROM Artist
+INNER JOIN Album on Artist.id = Album.ArtistId
+WHERE Album.GenreId = (SELECT id
 					FROM Genre
 					WHERE label ='Pop');
 
 /*5. List all the Artists that have a Jazz or Rock Album*/
-SELECT art.ArtistName
-FROM Artist art inner join
-Album alb on art.id = alb.ArtistId
-WHERE alb.GenreId IN (SELECT id
+SELECT Artist.ArtistName
+FROM Artist 
+INNER JOIN
+Album ON Artist.id = Album.ArtistId
+WHERE Album.GenreId IN (SELECT id
 					FROM Genre
 					WHERE label ='Jazz' OR label ='Rock');
 
@@ -38,15 +38,15 @@ WHERE Song.id IS NULL
 
 
 /*7. Use the INSERT statement, add one of your favorite artist to the artist table*/
-/*INSERT INTO Artist (ArtistName, YearEstablished)
-VALUES('The Shaggs', 1968);*/
+INSERT INTO Artist (ArtistName, YearEstablished)
+VALUES('The Shaggs', 1968);
 
 /*8. Use the INSERT statement add one, or more, albums by your artist to the Album Table */
-/*INSERT INTO Album (Title, ReleaseDate, AlbumLength, Label, ArtistId, GenreId)
-VALUES ('Philosophy of the World', '3/9/1969', 3139, 'Third Word', 28, 7);*/
+INSERT INTO Album (Title, ReleaseDate, AlbumLength, Label, ArtistId, GenreId)
+VALUES ('Philosophy of the World', '3/9/1969', 3139, 'Third Word', 28, 7);
 
 /*9. Use the INSERT statement, add some songs that are on that album to the Song Table */
-/*INSERT INTO Song (Title, SongLength, ReleaseDate, GenreId, ArtistId, AlbumId)
+INSERT INTO Song (Title, SongLength, ReleaseDate, GenreId, ArtistId, AlbumId)
 VALUES ('Who are Parents?', 256, '3/9/1969', 7, 28, 23);
 
 INSERT INTO Song (Title, SongLength, ReleaseDate, GenreId, ArtistId, AlbumId)
@@ -59,11 +59,11 @@ Direction of join matters. Try the following statements and see the difference i
 SELECT a.Title, s.Title FROM Album a LEFT JOIN Song s ON s.AlbumId = a.Id;
 SELECT a.Title, s.Title FROM Song s LEFT JOIN Album a ON s.AlbumId = a.Id;*/
 
-SELECT s.Title, a.Title, art.ArtistName
-From Song s
-LEFT JOIN Album a ON s.AlbumId = a.Id
-LEFT JOIN Artist art on s.ArtistId = art.Id
-WHERE art.ArtistName = 'The Shaggs';
+SELECT Song.Title, Album.Title, Artist.ArtistName
+From Song
+LEFT JOIN Album ON Song.AlbumId = Album.Id
+LEFT JOIN Artist ON Song.ArtistId = Artist.Id
+WHERE Artist.ArtistName = 'The Shaggs';
 
 
 /*11. Write a select statement to display how many songs exist for each ablum.
