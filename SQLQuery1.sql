@@ -31,9 +31,11 @@ WHERE alb.GenreId IN (SELECT id
 
 
 /*6. List all the Albums with 0 songs*/
-SELECT Title
-From Album
-WHERE AlbumLength = null;
+SELECT Album. *
+FROM Album
+LEFT JOIN Song on Album.id = Son.AlbumId
+WHERE Song.id IS NULL
+
 
 /*7. Use the INSERT statement, add one of your favorite artist to the artist table*/
 /*INSERT INTO Artist (ArtistName, YearEstablished)
